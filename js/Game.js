@@ -21,7 +21,7 @@
         return phrases[randomPhrase];
     }
 
-};
+}                         
 
  
 
