@@ -2,7 +2,7 @@
  * Project 4 - OOP Game App
  * Phrase.js */
 
- class Phrase {
+class Phrase {
     constructor(phrase) {
        this.phrase = phrase.toLowerCase(); 
     } // actual phrase object is representing, set to lower case
@@ -50,4 +50,4 @@
         }
     } // reveals letter/s on the board that match player selection
 
-}   
+}
