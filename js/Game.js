@@ -29,9 +29,8 @@
         const currPhrase = this.activePhrase;
         overlayDiv.style.display = 'none';
         currPhrase.addPhraseToDisplay;
-        
     } // selects random phrase and displays it to user on game start
-
+    
     checkForWin() {
         const letters = document.getElementsByClassName('letter');
         let notGuessed = 0
@@ -41,7 +40,7 @@
                 return 'try again';
             }
         }
-        if(notGuessed ===0) {
+        if(notGuessed === 0) {
             return 'you win';
         }
     } // checks for winning move
@@ -57,12 +56,21 @@
     } // removes a life from scoreboard
 
     gameOver(gameWon) {
+        const endGame = document.querySelector('#game-over-message');
+        overlayDiv.classList.remove('start');
+        document.getElementById('btn__reset').textContent = 'Try again?'
+        if(gameWon === 'winner') {
+            overlayDiv.classList.remove('lose');
+            overlayDiv.classList.add('win');
+            endGame.textContent = 'You guessed the phrase!'
+        }
+        else {
+            overlayDiv.classlist.remove('win');
+            overlayDiv.classList.add('lose');
+            endGame.textContent = 'Sorry, all out of moves!';
+        }
+    
+  
+    }
 
-    } // displays Gam Over message
-
-
-}                         
-
- 
-
-
+}

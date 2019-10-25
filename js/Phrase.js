@@ -26,12 +26,28 @@
         }
       } // adds letter placeholders to display on game start
 
-    checkLetter() { 
-    
+    checkLetter(letter) {
+        let matchCheck = 0;
+
+        for(let i = 0; i < this.phrase.length; i++) {
+            if(letter === this.phrase[i]) {
+                matchCheck++
+            }
+        }
+        if(matchCheck > 0) {
+            return true;
+        } else {
+            return false;
+            }
+        
     
     } // checks to see if selected letter matches any letters in the phrase
 
-    showMatchedLetter() {
-
+    showMatchedLetter(letter) {
+        const showLetters = document.getElementsByClassName(letter);
+        for(let showLetter of showLetters) {
+            showLetter.classList.add('show');
+        }
     } // reveals letter/s on the board that match player selection
-}
+
+}   
