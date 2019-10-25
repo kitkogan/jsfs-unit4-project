@@ -31,6 +31,36 @@
         currPhrase.addPhraseToDisplay;
         
     } // selects random phrase and displays it to user on game start
+
+    checkForWin() {
+        const letters = document.getElementsByClassName('letter');
+        let notGuessed = 0
+        for(let letter of letters) {
+            if(letter.classList.contains('show')) {
+                notGuessed++;
+                return 'try again';
+            }
+        }
+        if(notGuessed ===0) {
+            return 'you win';
+        }
+    } // checks for winning move
+
+    removeLife() {
+        this.missed++;
+        const minusOne = document.getElementsByTagName('img')[this.missed - 1];
+        minusOne.setAttribute('src', images/lostHeart.png);
+        if(hearts[4].getAttribute('src') === 'images/lostHeart.png') {
+            this.gameOver('sorry you lose');
+            this.missed = 0;
+        }
+    } // removes a life from scoreboard
+
+    gameOver(gameWon) {
+
+    } // displays Gam Over message
+
+
 }                         
 
  
