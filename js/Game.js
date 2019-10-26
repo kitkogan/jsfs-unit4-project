@@ -91,6 +91,7 @@ class Game {
             }
         }
     }
+    
     checkForWin() {
         const phraseBank = document.getElementById('phrase');
         const keys = phraseBank.querySelectorAll('li');
@@ -114,7 +115,7 @@ class Game {
     removeLife() {
         const lives = document.querySelectorAll('#scoreboard img');
 
-        for (let img of hearts) {
+        for (let img of lives) {
             if (img.src.inclues(liveHeart.png)){
                 img.src = 'images/lostHeart.png';
             }
@@ -150,7 +151,15 @@ class Game {
             overlayDiv.className = 'win';
         }
     
-  
+    }
+
+    resetGame(){
+        $('#phrase ul').children().remove();
+        $("#another-message").remove();
+        $('.chosen').attr('class', 'key');
+        $('.wrong').attr('class', 'key');
+        $('key').prop('disabled', false);
+        $('.tries img').attr('src', 'images/liveHeart.png');
     }
 
 }
