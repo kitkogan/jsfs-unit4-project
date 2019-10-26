@@ -61,6 +61,36 @@ class Game {
        }
    }
     
+   handleKeyboardInteraction(event) {
+       let button;
+       const keys = document.getElementsByClassName('key');
+       const letter = event.key;
+       const match = this.activePhrase.checkLetter(letter);
+
+       for (let key of keys) {
+           if (key.textContent == event.key) {
+           button = key;
+
+           }
+   
+        }
+
+        if (button && !button.disabled) {
+            button.disabled = true;
+
+            if (match) {
+                button.className += ' ' + 'chosen';
+                this.activePhrase.showMatchedLetter(letter);
+
+                if(this.checkForWin()) {
+                    this.gameeOver("You guessed the phrase!")
+                }
+            } else {
+                button.className += ' ' + 'wrong';
+                this.removeLife();
+            }
+        }
+    }
     checkForWin() {
         const letters = document.getElementsByClassName('letter');
         let notGuessed = 0
