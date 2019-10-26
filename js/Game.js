@@ -19,7 +19,7 @@ class Game {
 
     createPhrase() {
         const phraseDisplayed = [];
-        const phrases =  [
+        const phrases = [
         'Six sticky skeletons',
         'Gobbling gargoyles gobbled gobbling goblins',
         'Creepy crawly critters crawl through creepy crawly craters',
@@ -49,13 +49,13 @@ class Game {
        button.disabled = true;
 
        if(match) {
-           button.className += ' ' + 'chosen';
+           button.className += " " + "chosen";
            this.activePhrase.showMatchedLetter(letter);
            if(this.checkForWin()) {
                this.gameOver("You guessed the phrase!");
            }
         } else {
-            button.className += ' ' + 'wrong';
+            button.className += " " + "wrong";
             this.removeLife();
 
        }
@@ -63,13 +63,13 @@ class Game {
     
    handleKeyboardInteraction(event) {
        let button;
-       const keys = document.getElementsByClassName('key');
+       const keys = document.getElementsByClassName("key");
        const letter = event.key;
        const match = this.activePhrase.checkLetter(letter);
 
        for (let key of keys) {
            if (key.textContent == event.key) {
-           button = key;
+            button = key;
 
            }
    
@@ -79,28 +79,28 @@ class Game {
             button.disabled = true;
 
             if (match) {
-                button.className += ' ' + 'chosen';
+                button.className += " " + "chosen";
                 this.activePhrase.showMatchedLetter(letter);
 
                 if(this.checkForWin()) {
                     this.gameeOver("You guessed the phrase!")
                 }
             } else {
-                button.className += ' ' + 'wrong';
+                button.className += " " + "wrong";
                 this.removeLife();
             }
         }
     }
-    
+
     checkForWin() {
-        const phraseBank = document.getElementById('phrase');
-        const keys = phraseBank.querySelectorAll('li');
+        const phraseBank = document.getElementById("phrase");
+        const keys = phraseBank.querySelectorAll("li");
 
         for(let key of keys) {
             let keyClassName = key.className;
             
-            if (keyClassName !== 'space') {
-                if (keyClassName.includes('hide')){
+            if (keyClassName !== "space") {
+                if (keyClassName.includes("hide")){
                     return false;
                 }
             }
@@ -116,22 +116,23 @@ class Game {
         const lives = document.querySelectorAll('#scoreboard img');
 
         for (let img of lives) {
-            if (img.src.inclues(liveHeart.png)){
+            if (img.src.includes('liveHeart.png')) {
                 img.src = 'images/lostHeart.png';
-            }
+                break;
+            }  
+        }
         
         this.missed += 1;
 
         if (this.missed >= 5) {
             this.gameOver('Sorry, you did not guess the phrase!');
 
-            }
-    
-        } // removes a life from scoreboard
-    }
+        }
+    } // removes a life from scoreboard 
+
     gameOver(message) {
         const overlayDiv = document.getElementById('overlay');
-        overlayDiv.style.display('block');
+        overlayDiv.style.display = 'block';
         document.getElementById('game-over-message').textContent = message;
 
         if(this.missed >= 5) {
@@ -142,19 +143,19 @@ class Game {
             gameLostMsg.id = 'another-message';
             gameLostMsg.textContent = 'The mystery phrase was: ';
             span.textContent = `"${phrase}"`;
-            gameLostMsg.appendChild(span);
-            document.getElementsById('overlay').appendChild(gameLostMsg);
 
-            overlayDiv.className = 'lose';
-        }
-        else {
-            overlayDiv.className = 'win';
+            gameLostMsg.appendChild(span);
+            document.getElementById('overlay').appendChild(gameLostMsg);
+
+            overlayDiv.className = "lose";
+        } else {
+            overlayDiv.className = "win";
         }
     
     }
 
     resetGame(){
-        $('#phrase ul').children().remove();
+        $('#ul').children().remove();
         $("#another-message").remove();
         $('.chosen').attr('class', 'key');
         $('.wrong').attr('class', 'key');

@@ -3,7 +3,7 @@
  * app.js */
 
 let game;
-const keys = document.getElementByClassName(key);
+const keys = document.getElementsByClassName('key');
 
 for (let key of keys) {
     key.addEventListener('click', function(event) {
