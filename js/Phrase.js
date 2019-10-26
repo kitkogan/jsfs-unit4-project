@@ -8,46 +8,48 @@ class Phrase {
     } // actual phrase object is representing, set to lower case
     
     addPhraseToDisplay(){
+        const phraseDiv = document.getElementById('phrase');
+        const ul = phraseDiv.firstElementChild;
         
-        const ul = document.getElementById('phrase').firstElementChild;
-        
-        for(let i = 0; i < this.phrase.length; i++){
+        for(let character of this.phrase){
           
-          let li = document.createElement('li');
-          li.textContent = this.phrase[i];
+          const li = document.createElement('li');
       
-          if(li.textContent === ' '){
-            li.classList.add('hide', 'space');
+          if(character === ' '){
+            li.className = 'space';
           } else {
-            li.classList.add('hide', 'letter');
+            li.className = 'hide letter' + character;
           }
           
+          li.textContent = character;
           ul.appendChild(li);
         }
-      } // adds letter placeholders to display on game start
+    } // adds letter placeholders to display on game start
 
     checkLetter(letter) {
-        let matchCheck = 0;
+        return this.phrase.includes(letter.toLowerCase());
+    }
 
-        for(let i = 0; i < this.phrase.length; i++) {
-            if(letter === this.phrase[i]) {
-                matchCheck++
-            }
-        }
-        if(matchCheck > 0) {
-            return true;
-        } else {
-            return false;
-            }
+        // for(let i = 0; i < this.phrase.length; i++) {
+        //     if(letter === this.phrase[i]) {
+        //         matchCheck++
+        //     }
+        // }
+        // if(matchCheck > 0) {
+        //     return true;
+        // } else {
+        //     return false;
+        //     }
         
     
-    } // checks to see if selected letter matches any letters in the phrase
+    //} // checks to see if selected letter matches any letters in the phrase
 
-    showMatchedLetter(letter) {
-        const showLetters = document.getElementsByClassName(letter);
-        for(let showLetter of showLetters) {
-            showLetter.classList.add('show');
+    showMatchedLetter(letter){
+        const matchElems = document.getElementsByClassName(letter);
+        for(let element of matchElems) {
+            element.className = elemenmt.className.replace(/hide/, 'show');
         }
     } // reveals letter/s on the board that match player selection
 
+    
 }
