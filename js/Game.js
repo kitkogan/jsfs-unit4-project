@@ -36,13 +36,30 @@ class Game {
     }
 
     startGame() {
-       // this.resetGame();
+        this.resetGame();
         document.getElementById('overlay').style.display = 'none';
         this.activePhrase = this.getRandomPhrase();
         this.activePhrase.addPhraseToDisplay();
     } // selects random phrase and displays it to user on game start
 
-   
+   handleInteraction(event) {
+       const button = event.target;
+       const letter = button.textContent;
+       const match = this.activePhrase.checkLetter(letter);
+       button.disabled = true;
+
+       if(match) {
+           button.className += ' ' + 'chosen';
+           this.activePhrase.showMatchedLetter(letter);
+           if(this.checkForWin()) {
+               this.gameOver("You guessed the phrase!");
+           }
+        } else {
+            button.className += ' ' + 'wrong';
+            this.removeLife();
+
+       }
+   }
     
     checkForWin() {
         const letters = document.getElementsByClassName('letter');
