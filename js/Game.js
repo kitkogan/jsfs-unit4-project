@@ -6,41 +6,22 @@
 class Game {
     constructor() {
         this.missed = 0;
-        this.phrases = this.createPhrase();
+        this.phrases = this.createPhrases();
         this.activePhrase = null;
     } // constructor containing: tracker for num of missed guesses, 
             //bank of phrases the game will randomly choose from, 
             //phrase currently in play
+    startGame() {
+            this.resetGame();
+            document.getElementById('overlay').style.display = 'none';
+            this.activePhrase = this.getRandomPhrase();
+            this.activePhrase.addPhraseToDisplay();
+    } // selects random phrase and displays it to user on game start
 
     getRandomPhrase() {
         const phraseIndex = Math.floor(Math.random() * 5);
         return this.phrases[phraseIndex];
-    } // selects random phrase from phrase property
-
-    createPhrase() {
-        const phraseDisplayed = [];
-        const phrases = [
-        'Six sticky skeletons',
-        'Gobbling gargoyles gobbled gobbling goblins',
-        'Creepy crawly critters crawl through creepy crawly craters',
-        'Dracula digs dreary dark dungeons',
-        'Several spooky slimy spiders spun sulking by the sea'
-    ];
-
-    for (let phrase of phrases) {
-        phraseDisplayed.push(new Phrase(phrase));
-    }
-
-    return phraseDisplayed;
-
-    }
-
-    startGame() {
-        this.resetGame();
-        document.getElementById('overlay').style.display = 'none';
-        this.activePhrase = this.getRandomPhrase();
-        this.activePhrase.addPhraseToDisplay();
-    } // selects random phrase and displays it to user on game start
+    } // selects random phrase from phrase 
 
    handleInteraction(event) {
        const button = event.target;
@@ -52,13 +33,12 @@ class Game {
            button.className += " " + "chosen";
            this.activePhrase.showMatchedLetter(letter);
            if(this.checkForWin()) {
-               this.gameOver("You guessed the phrase!");
+               this.gameOver("Nice work! You guessed the phrase!");
            }
         } else {
             button.className += " " + "wrong";
             this.removeLife();
-
-       }
+        }
    }
     
    handleKeyboardInteraction(event) {
@@ -70,8 +50,7 @@ class Game {
        for (let key of keys) {
            if (key.textContent == event.key) {
             button = key;
-
-           }
+          }
    
         }
 
@@ -82,8 +61,8 @@ class Game {
                 button.className += " " + "chosen";
                 this.activePhrase.showMatchedLetter(letter);
 
-                if(this.checkForWin()) {
-                    this.gameeOver("You guessed the phrase!")
+                if (this.checkForWin()) {
+                    this.gameOver("Nice work! You guessed the phrase!")
                 }
             } else {
                 button.className += " " + "wrong";
@@ -92,31 +71,12 @@ class Game {
         }
     }
 
-    checkForWin() {
-        const phraseBank = document.getElementById("phrase");
-        const keys = phraseBank.querySelectorAll("li");
-
-        for(let key of keys) {
-            let keyClassName = key.className;
-            
-            if (keyClassName !== "space") {
-                if (keyClassName.includes("hide")){
-                    return false;
-                }
-            }
-               
-        }
-        
-        return true;
-    }
-       
-     // checks for winning move
 
     removeLife() {
         const lives = document.querySelectorAll('#scoreboard img');
 
         for (let img of lives) {
-            if (img.src.includes('liveHeart.png')) {
+            if (img.src.includes("liveHeart.png")) {
                 img.src = 'images/lostHeart.png';
                 break;
             }  
@@ -130,36 +90,76 @@ class Game {
         }
     } // removes a life from scoreboard 
 
+    checkForWin() {
+        const phraseDiv = document.getElementById('phrase');
+        const keys = phraseDiv.querySelectorAll('li');
+
+        for(let key of keys) {
+            let keyClassName = key.className;
+            
+            if (keyClassName !== 'space') {
+                if (keyClassName.includes('hide')){
+                    return false;
+                }
+            }
+               
+        }
+        
+        return true;
+    } // checks for winning move
+
+    createPhrases() {
+        const displayedPhrase = [];
+        const phrases = [
+            "Six sticky skeletons",
+            "Gargoyles gobbling goblins",
+            "Creepy critters crawling",
+            "Dracula digs dungeons",
+            "Spiders spin spooky silks",
+        ];
+
+        for (let phrase of phrases) {
+            displayedPhrase.push(new Phrase(phrase));
+        }
+
+        return displayedPhrase;
+
+    }
+
     gameOver(message) {
         const overlayDiv = document.getElementById('overlay');
         overlayDiv.style.display = 'block';
         document.getElementById('game-over-message').textContent = message;
 
-        if(this.missed >= 5) {
+        if (this.missed >= 5) {
             const phrase = this.activePhrase.phrase;
-            const gameLostMsg = document.createElement('h1');
+            const lostGameMsg = document.createElement('h1');
             const span = document.createElement('span');
 
-            gameLostMsg.id = 'another-message';
-            gameLostMsg.textContent = 'The mystery phrase was: ';
+            lostGameMsg.id = "another-message";
+            lostGameMsg.textContent = "The mystery phrase was: ";
             span.textContent = `"${phrase}"`;
 
-            gameLostMsg.appendChild(span);
-            document.getElementById('overlay').appendChild(gameLostMsg);
+            lostGameMsg.appendChild(span);
+            document.getElementById('overlay').appendChild(lostGameMsg);
 
-            overlayDiv.className = "lose";
+            overlayDiv.className = 'lose';
+            $('.key').prop('disabled', true);
+            
         } else {
-            overlayDiv.className = "win";
+            overlayDiv.className = 'win';
+            $('.key').prop('disabled', true);
+            
         }
-    
-    }
 
+
+    }
     resetGame(){
-        $('#ul').children().remove();
+        $('#phrase ul').children().remove();
         $("#another-message").remove();
         $('.chosen').attr('class', 'key');
         $('.wrong').attr('class', 'key');
-        $('key').prop('disabled', false);
+        $('.key').prop('disabled', false);
         $('.tries img').attr('src', 'images/liveHeart.png');
     }
 

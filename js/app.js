@@ -16,5 +16,6 @@ document.getElementById('btn__reset').addEventListener('click', () => {
 });
 
 document.addEventListener('keydown', function(event) {
-    game.handkleKeyboardInteraction(event);
+    game.handleKeyboardInteraction(event);
 });
+
