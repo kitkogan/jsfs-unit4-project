@@ -33,6 +33,7 @@ body {
 li, ol, ul {
   padding: 0;
   display: inline-block;
+  
 }
 
 h2 {
@@ -77,11 +78,13 @@ button {
 .section {
   width: 100%;
   padding: 10px;
+  
 }
 
-#phrase ul li{
+#phrase ul li {
   margin-top: 15px;
 }
+  
 
 /* Title */
 

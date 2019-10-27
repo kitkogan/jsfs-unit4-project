@@ -11,6 +11,7 @@ class Game {
     } // constructor containing: tracker for num of missed guesses, 
             //bank of phrases the game will randomly choose from, 
             //phrase currently in play
+
     startGame() {
             this.resetGame();
             document.getElementById('overlay').style.display = 'none';
@@ -19,7 +20,7 @@ class Game {
     } // selects random phrase and displays it to user on game start
 
     getRandomPhrase() {
-        const phraseIndex = Math.floor(Math.random() * 5);
+        const phraseIndex = Math.floor(Math.random() * 6);
         return this.phrases[phraseIndex];
     } // selects random phrase from phrase 
 
@@ -39,7 +40,7 @@ class Game {
             button.className += " " + "wrong";
             this.removeLife();
         }
-   }
+   } //
     
    handleKeyboardInteraction(event) {
        let button;
@@ -111,11 +112,13 @@ class Game {
     createPhrases() {
         const displayedPhrase = [];
         const phrases = [
+            
             "Six sticky skeletons",
-            "Gargoyles gobbling goblins",
-            "Creepy critters crawling",
-            "Dracula digs dungeons",
-            "Spiders spin spooky silks",
+            "Gorgoyles gobbling green goblins",
+            "Critters crawl through creepy craters",
+            "Dracula digs dreary dark dungeons",
+            "Spooky spiders spin silks by the sea",
+            "Hoot owls haunt halloween houses",
         ];
 
         for (let phrase of phrases) {
