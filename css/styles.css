@@ -4,13 +4,13 @@
 /* Variables */
 
 :root {
-  --color-win: #78CF82;
-  --color-lose: #D94545;
-  --color-start: #5b85b7;
-  --color-neutral: #445069;
-  --color-neutral-light: #D2D2D2;
-  --color-keys: #37474F;
-  --color-keys-light: #E5E5E5;
+  --color-win: rgb(230, 19, 125);
+  --color-lose: rgb(149, 12, 241);
+  --color-start: #b75b9b;
+  --color-neutral: #bb17b3;
+  --color-neutral-light: rgb(190, 155, 236);
+  --color-keys: rgb(110, 57, 112);
+  --color-keys-light: rgb(226, 175, 224);
   --font-size-large: 60px;
   --font-size-medium: 20px;
   --transition: all .2s ease-in-out;
@@ -20,7 +20,7 @@
 
 * {
   box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Staatliches', sans-serif;
 }
 
 body {
@@ -89,7 +89,7 @@ button {
 /* Title */
 
 .header {
-  color: #3a3f58;
+  color: #135858;
 }
 
 
@@ -113,8 +113,8 @@ button {
 
 
 .show {
-  color: #fff;
-  background-color: #4ac0d5;
+  color: rgb(155, 27, 91);
+  background-color: #3eb3ad;
   font-size: 20px;
   height: 65px;
   width: 65px;
@@ -134,21 +134,21 @@ button {
 }
 
 .chosen {
-  background: #3a3f58;
+  background: #c70d9c;
   border-radius: 5px;
   font-size: var(--font-size-medium);
   color: #FFFFFF;
 }
 
 .wrong {
-  background: #f7a964;
+  background: #9655cc;
   color: #FFFFFF;
 }
 
 .btn__reset {
   padding: 16px;
   margin: 50px auto;
-  background: #f7a964;
+  background: #bc64f7;
   border-radius: 5px;
   font-size: 20px;
   cursor: pointer;
@@ -169,7 +169,7 @@ button {
   display: flex;
   flex-direction: column;
   position: fixed;
-  color: #FFFFFF;
+  color: rgba(65, 7, 62, 0.87);
   justify-content: center;
   top: 0;
   bottom: 0;
@@ -183,7 +183,7 @@ button {
 }
 
 .start {
-  background-color: #3a3f58;
+  background-color: #b82dbd;
 }
 
 .start a {
@@ -199,7 +199,7 @@ button {
 }
 
 .lose {
-  background-color: #f5785f;
+  background-color: #f55fc3;
 }
 
 .lose a {
