@@ -22,7 +22,7 @@ class Game {
     getRandomPhrase() {
         const phraseIndex = Math.floor(Math.random() * 6);
         return this.phrases[phraseIndex];
-    } // selects random phrase from phrase 
+    } // selects random phrase from phrase array
 
    handleInteraction(event) {
        const button = event.target;
@@ -40,7 +40,11 @@ class Game {
             button.className += " " + "wrong";
             this.removeLife();
         }
-   } //
+   } // event handler for on-screen keyboard
+        // checks for matched letter
+        // determines button behavior depending on whether a match is made
+            // if metched, at game over the winning phrase will appear
+            // if not matched, remove life
     
    handleKeyboardInteraction(event) {
        let button;
@@ -70,7 +74,11 @@ class Game {
                 this.removeLife();
             }
         }
-    }
+    } // initiates hardware keyboard functionality
+        //event handler for onscreen keyboard
+           // determines button behavior depending on whether a match is made
+             // if metched, at game over the winning phrase will appear
+             // if not matched, remove life
 
 
     removeLife() {
@@ -89,7 +97,7 @@ class Game {
             this.gameOver('Sorry, you did not guess the phrase!');
 
         }
-    } // removes a life from scoreboard 
+    } // removes a life from scoreboard if wrong answer selected
 
     checkForWin() {
         const phraseDiv = document.getElementById('phrase');
@@ -107,7 +115,7 @@ class Game {
         }
         
         return true;
-    } // checks for winning move
+    } // checks for winning anser selection
 
     createPhrases() {
         const displayedPhrase = [];
@@ -127,7 +135,7 @@ class Game {
 
         return displayedPhrase;
 
-    }
+    } // creates an array of potential phrases for the game to display
 
     gameOver(message) {
         const overlayDiv = document.getElementById('overlay');
@@ -156,7 +164,12 @@ class Game {
         }
 
 
-    }
+    } // generates the game over messages that will display to user
+            // if the num of missed guesses is >= 5, the losing message will display 
+                // letting the player know what the mystery phrase was
+            // otherwise, the message for winning game will appear 
+            // also disables the hardware keyboard to prevent unintended user interaction with game over screen
+
     resetGame(){
         $('#phrase ul').children().remove();
         $("#another-message").remove();
@@ -164,6 +177,6 @@ class Game {
         $('.wrong').attr('class', 'key');
         $('.key').prop('disabled', false);
         $('.tries img').attr('src', 'images/liveHeart.png');
-    }
+    } // resets gameboard
 
 }
