@@ -17,7 +17,7 @@ class Game {
             document.getElementById('overlay').style.display = 'none';
             this.activePhrase = this.getRandomPhrase();
             this.activePhrase.addPhraseToDisplay();
-    } // selects random phrase and displays it to user on game start
+    } // resets game components and displays new phrase to user
 
     getRandomPhrase() {
         const phraseIndex = Math.floor(Math.random() * 6);
@@ -40,7 +40,7 @@ class Game {
             button.className += " " + "wrong";
             this.removeLife();
         }
-   } // event handler for on-screen keyboard
+   } // interaction handler for on-screen keyboard
         // checks for matched letter
         // determines button behavior depending on whether a match is made
             // if metched, at game over the winning phrase will appear
@@ -75,7 +75,7 @@ class Game {
             }
         }
     } // initiates hardware keyboard functionality
-        //event handler for onscreen keyboard
+        // interaction handler for onscreen keyboard
            // determines button behavior depending on whether a match is made
              // if metched, at game over the winning phrase will appear
              // if not matched, remove life
